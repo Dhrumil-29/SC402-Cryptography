@@ -11,22 +11,20 @@ class Blockchain(object):
   
         self.newBlock(previousHash = "Cryptography is typically bypassed, not penetrated.", the_proof = 100)  
   
-# Creating a new block listing key/value pairs of  
-# block information in a JSON object.  
-# Reset the list of pending transactions &  
-# append the newest block to the chain.  
+# Creating a new JSON object block listing key-value pairs. 
+# Pending transactions list Rest and the new box to the blockchain append
     def newBlock(self, the_proof, previousHash = None):  
-        block = {  
+        new_box = {  
             'index': len(self.chain) + 1,  
-            'timestamp': time(),  
-            'transactions': self.pendingTransactions,  
             'proof': the_proof,  
-            'previous_hash': previousHash or self.hash(self.chain[-1]),  
+            'timestamp': time(),  
+            'previous_hash_func': previousHash or self.hash(self.chain[-1]),  
+            'transactions': self.pendingTransactions,  
         }  
         self.pendingTransactions = []  
-        self.chain.append(block)  
+        self.chain.append(new_box)  
   
-        return block  
+        return new_box  
   
 #Searching the blockchain for the most recent block.  
     @property  
@@ -44,17 +42,16 @@ class Blockchain(object):
         self.pendingTransactions.append(transaction)  
         return self.lastBlock['index'] + 1  
   
-# receiving one block. Turning it into a string, turning that into  
-# Unicode (for hashing). Hashing with SHA256 encryption,  
-# then translating the Unicode into a hexidecimal string.  
+# receiving one box. Turning it into a string Unicode (for hashing). Hashing with SHA256 encryption,  
+# then translating the Unicode into a string(hexadecimal).  
     def hash(self, block):  
         stringObject = json.dumps(block, sort_keys = True)  
         blockString = stringObject.encode()  
   
-        rawHash = hashlib.sha256(blockString)  
-        hexHash = rawHash.hexdigest()  
+        raw_Hashing = hashlib.sha256(blockString)  
+        hex_Hashing = raw_Hashing.hexdigest()  
   
-        return hexHash  
+        return hex_Hashing
   
 block_chain = Blockchain()  
 trans1 = block_chain.newTransaction("Chirag", "Dhrumil", '15 BTC')  
